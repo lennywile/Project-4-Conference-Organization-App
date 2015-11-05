@@ -27,8 +27,10 @@ class SetAnnouncementHandler(webapp2.RequestHandler):
 class FeaturedSpeakerHandler(webapp2.RequestHandler):
     def post(self):
         """Set featured speaker in Memcache if appropriate"""
-        logging.info("Enter FeaturedSpeakerHandler") 
-        ConferenceApi._cacheFeaturedSpeaker(self.request.get('speaker'))
+        logging.info("Enter FeaturedSpeakerHandler")
+        ConferenceApi._cacheFeaturedSpeaker(
+            self.request.get('speaker'),
+            self.request.get('conf_key'))
         self.response.set_status(204)
 
 class SendConfirmationEmailHandler(webapp2.RequestHandler):
